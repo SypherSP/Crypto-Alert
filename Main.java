@@ -1,13 +1,36 @@
-import ApiCalls.CryptoCall;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        CryptoCall call = new CryptoCall();
+    static int INTERVAL=2; //seconds
 
-        try {
-            call.getPrice("bitcoin");
-        } catch (Exception e) {
-            System.out.println(e);
+
+    public static void prettyPrint(Coin coin){
+        if(coin.getPrice()!=null) //before we hit the api, the value of coin price is null
+            System.out.println(coin.getCoinName() + " - " + coin.getPrice());
+    }
+
+    public static void main(String[] args) {
+        List<Coin> coinList= new ArrayList<>();
+        coinList.add(new Coin("BNBBUSD","Binance Coin"));//initializing coin
+        coinList.add(new Coin("BTCBUSD","Binance Coin"));//initializing coin
+
+        for(Coin coin:coinList){
+            coin.start();
         }
+
+
+        //the following is just to print the coin.getPrice at constant intervals.
+        //the thread work happens in run function of Coin class. There it continuously updates the price
+
+        Timer t=new Timer();
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                for(Coin coin:coinList){
+                    prettyPrint(coin);
+                }
+            }
+        },0,INTERVAL* 1000L);
+
     }
 }
