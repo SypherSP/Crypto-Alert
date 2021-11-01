@@ -59,7 +59,7 @@ public class CoinController implements Initializable {
             public void run() {
                 for(int i=0;i<4;i++) {
                     if(coinList.get(i).getPrice()!=null)
-                    myList.set(i, new GuiCoin(coinList.get(i).getName(), coinList.get(i).getPrice()));
+                    myList.set(i, new GuiCoin(coinList.get(i).getCoinName(), coinList.get(i).getPrice()));
                 }
             }
         },0,2* 1000L);
