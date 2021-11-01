@@ -10,43 +10,60 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class CoinController implements Initializable {
+//    private ScheduledExecutorService executorService;
     @FXML
     private TableColumn<GuiCoin, Double> price;
-
-    @FXML
-    private TableColumn<GuiCoin,Double> upper;
-
-    @FXML
-    private TableColumn<GuiCoin, Double> lower;
-
     @FXML
     private TableColumn<GuiCoin, String> name;
-
     @FXML
     private TableView<GuiCoin> table;
 
-    //    dummy data
-    ObservableList<GuiCoin> list = FXCollections.observableArrayList(
-            new GuiCoin("bitcoin", "bitcoin", 23.0 ,23.0, 23.0 ),
-            new GuiCoin("bitcoin", "Binance Coin", 23.0 ,23.0, 23.0 ),
-            new GuiCoin("bitcoin", "Ethereum Coin", 23.0 ,23.0, 23.0 ),
-            new GuiCoin("bitcoin", "Shib Inu", 23.0 ,23.0, 23.0 )
-    );
 
+    ObservableList<GuiCoin> myList = populateData();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         name.setCellValueFactory(new PropertyValueFactory<GuiCoin, String>("name"));
         price.setCellValueFactory(new PropertyValueFactory<GuiCoin, Double>("price"));
-        upper.setCellValueFactory(new PropertyValueFactory<GuiCoin, Double>("upper"));
-        lower.setCellValueFactory(new PropertyValueFactory<GuiCoin, Double>("lower"));
-
-        table.setItems(list);
+        table.setItems(myList);
     }
     @FXML
     private void deleteRowFromTable(ActionEvent event){
         table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
+    }
+
+    private ObservableList<GuiCoin> populateData(){
+        List<Coin> coinList= new ArrayList<>(4);
+        ObservableList<GuiCoin> myList = FXCollections.observableArrayList();
+        coinList.add(new Coin("BNBBUSD","Binance Coin"));//initializing coin
+        coinList.add(new Coin("BTCBUSD","Bitcoin"));//initializing coin
+        coinList.add(new Coin("ETHBUSD","Ethereum Coin"));//initializing coin
+        coinList.add(new Coin("SHIBBUSD","Shib Inu"));//initializing coin
+
+        for(Coin coin:coinList){
+            coin.start(); //starting all threads
+        }
+        for(Coin coin:coinList) {
+            if(coin.getPrice()!=null)
+            myList.add(new GuiCoin(coin.getName(), coin.getPrice()));
+        }
+        Timer t=new Timer();
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                for(int i=0;i<4;i++) {
+                    if(coinList.get(i).getPrice()!=null)
+                    myList.set(i, new GuiCoin(coinList.get(i).getName(), coinList.get(i).getPrice()));
+                }
+            }
+        },0,2* 1000L);
+
+        return myList;
     }
 }
