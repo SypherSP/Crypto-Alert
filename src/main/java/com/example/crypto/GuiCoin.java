@@ -1,5 +1,5 @@
 package com.example.crypto;
-
+//this class is used to observe values for the live feed
 public class GuiCoin {
     private String name;
     private Double price;

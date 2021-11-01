@@ -41,10 +41,13 @@ public class CoinController implements Initializable {
     private ObservableList<GuiCoin> populateData(){
         List<Coin> coinList= new ArrayList<>(4);
         ObservableList<GuiCoin> myList = FXCollections.observableArrayList();
-        coinList.add(new Coin("BNBBUSD","Binance Coin"));//initializing coin
-        coinList.add(new Coin("BTCBUSD","Bitcoin"));//initializing coin
-        coinList.add(new Coin("ETHBUSD","Ethereum Coin"));//initializing coin
-        coinList.add(new Coin("SHIBBUSD","Shib Inu"));//initializing coin
+
+        //initializing coins
+        //set lower and upper values from form when adding a coin
+        coinList.add(new Coin("BNBBUSD","Binance Coin"));
+        coinList.add(new Coin("BTCBUSD","Bitcoin"));
+        coinList.add(new Coin("ETHBUSD","Ethereum Coin"));
+        coinList.add(new Coin("SHIBBUSD","Shib Inu"));
 
         for(Coin coin:coinList){
             coin.start(); //starting all threads

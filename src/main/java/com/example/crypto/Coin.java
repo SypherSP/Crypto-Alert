@@ -5,7 +5,6 @@ import com.example.crypto.Requests.Get;
 import java.io.IOException;
 
 
-
 public class Coin extends Thread {
     public static String BASE_URL = "https://api1.binance.com/api/v3/ticker/price?symbol=";
     private String symbol, name;
@@ -15,8 +14,9 @@ public class Coin extends Thread {
         this.symbol = symbol;
         this.name = name;
         setPrice(downloadPrice());
-        upper = null;
-        lower = null;
+        //defaulting to 5% margin for fall and rise in prices
+        upper = price*(1.05);
+        lower = price*(0.95);
     }
 
     public Coin(String symbol, String name, double lower, double upper) {
@@ -30,10 +30,14 @@ public class Coin extends Thread {
     public Double getPrice() {
         return price;
     }
+    public Double getLower(){ return lower;}
+    public Double getUpper(){ return upper;}
 
     public String getCoinName() {
         return name;
     }
+
+    public synchronized void setLower(Double lower){this.lower=lower;}
 
     public void setPrice(Double price) {
         this.price = price;
