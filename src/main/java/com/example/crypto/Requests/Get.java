@@ -1,6 +1,5 @@
-package Requests;
+package com.example.crypto.Requests;
 
-// Imports
 import java.io.IOException;
 import java.net.URL;
 import java.io.InputStream;

@@ -1,6 +1,10 @@
+package com.example.crypto;
+
+import com.example.crypto.Requests.Get;
+
 import java.io.IOException;
 
-import Requests.Get;
+
 
 public class Coin extends Thread {
     public static String BASE_URL = "https://api1.binance.com/api/v3/ticker/price?symbol=";

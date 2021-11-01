@@ -1,3 +1,5 @@
+package com.example.crypto;
+
 import java.util.*;
 
 public class Main {
