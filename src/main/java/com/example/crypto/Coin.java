@@ -27,19 +27,19 @@ public class Coin extends Thread {
         this.upper = upper;
     }
 
-    public Double getPrice() {
+    public synchronized Double getPrice() {
         return price;
     }
-    public Double getLower(){ return lower;}
-    public Double getUpper(){ return upper;}
+    public synchronized Double getLower(){ return lower;}
+    public synchronized Double getUpper(){ return upper;}
 
     public String getCoinName() {
         return name;
     }
 
     public synchronized void setLower(Double lower){this.lower=lower;}
-
-    public void setPrice(Double price) {
+    public synchronized void setUpper(Double upper){this.upper=upper;}
+    public synchronized void setPrice(Double price) {
         this.price = price;
     }
 
