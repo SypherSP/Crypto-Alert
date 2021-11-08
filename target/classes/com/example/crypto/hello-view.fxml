@@ -10,9 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.CoinController">
+<BorderPane styleClass="background-pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+             prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.CoinController">
     <top>
-        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0" BorderPane.alignment="TOP_LEFT">
+        <HBox  alignment="CENTER" prefHeight="48.0" prefWidth="600.0" BorderPane.alignment="TOP_LEFT">
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="262.0" text="Crypto-Alert">
                     <font>
@@ -40,11 +41,11 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                     </VBox.margin>
                 </TableView>
-                <Button fx:id="Rbutton" mnemonicParsing="false" onAction="#deleteRowFromTable" text="Remove Selected Coin">
-                    <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                    </VBox.margin>
-                </Button>
+<!--                <Button fx:id="Rbutton" mnemonicParsing="false" onAction="#deleteRowFromTable" text="Remove Selected Coin">-->
+<!--                    <VBox.margin>-->
+<!--                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />-->
+<!--                    </VBox.margin>-->
+<!--                </Button>-->
             </children>
         </VBox>
     </center>

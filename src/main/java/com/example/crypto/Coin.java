@@ -52,11 +52,10 @@ public class Coin extends Thread {
             }
             setPrice(downloadPrice()); // keep downloading price and updating the coin price
 
-            if (upper != null && lower != null)
-                if (price >= upper)
-                    upperBreached();
-                else if (price <= lower)
-                    lowerBreached();
+            if (price >= upper)
+                upperBreached();
+            else if (price <= lower)
+                lowerBreached();
         }
     }
 

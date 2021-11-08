@@ -41,11 +41,11 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                     </VBox.margin>
                 </TableView>
-                <Button fx:id="Rbutton" mnemonicParsing="false" onAction="#deleteRowFromTable" text="Remove Selected Coin">
-                    <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                    </VBox.margin>
-                </Button>
+<!--                <Button fx:id="Rbutton" mnemonicParsing="false" onAction="#deleteRowFromTable" text="Remove Selected Coin">-->
+<!--                    <VBox.margin>-->
+<!--                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />-->
+<!--                    </VBox.margin>-->
+<!--                </Button>-->
             </children>
         </VBox>
     </center>

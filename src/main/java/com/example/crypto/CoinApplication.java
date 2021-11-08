@@ -11,7 +11,7 @@ public class CoinApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(CoinApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 800 , 400);
         scene.getStylesheets().add("style.css");
         stage.setTitle("Crypto Alert");
         stage.setScene(scene);
