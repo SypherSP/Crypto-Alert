@@ -9,14 +9,14 @@ public class Coin extends Thread {
     public static String BASE_URL = "https://api1.binance.com/api/v3/ticker/price?symbol=";
     private String symbol, name;
     private Double price, lower, upper;
-
+    private final Double defaultMargin=5.0;
     public Coin(String symbol, String name) {
         this.symbol = symbol;
         this.name = name;
         setPrice(downloadPrice());
         //defaulting to 5% margin for fall and rise in prices
-        upper = price*(1.05);
-        lower = price*(0.95);
+        upper = price*(100+defaultMargin)/100.0;
+        lower = price*(100-defaultMargin)/100.0;
     }
 
     public Coin(String symbol, String name, double lower, double upper) {
@@ -50,7 +50,7 @@ public class Coin extends Thread {
     public void run() {
         while (true) {
             try {
-                sleep(50);
+                sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

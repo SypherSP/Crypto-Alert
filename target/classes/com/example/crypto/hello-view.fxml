@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane styleClass="background-pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-             prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.CoinController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.crypto.CoinController">
     <top>
-        <HBox  alignment="CENTER" prefHeight="48.0" prefWidth="600.0" BorderPane.alignment="TOP_LEFT">
+        <HBox alignment="CENTER" prefHeight="48.0" prefWidth="600.0" BorderPane.alignment="TOP_LEFT">
             <children>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="262.0" text="Crypto-Alert">
                     <font>
@@ -33,6 +32,8 @@
                     <columns>
                         <TableColumn fx:id="name" prefWidth="75.0" text="Coin" />
                         <TableColumn fx:id="price" prefWidth="75.0" text="Price" />
+                        <TableColumn fx:id="lower" prefWidth="75.0" text="Lower" />
+                        <TableColumn fx:id="upper" prefWidth="75.0" text="Upper" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -41,11 +42,52 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                     </VBox.margin>
                 </TableView>
-<!--                <Button fx:id="Rbutton" mnemonicParsing="false" onAction="#deleteRowFromTable" text="Remove Selected Coin">-->
-<!--                    <VBox.margin>-->
-<!--                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />-->
-<!--                    </VBox.margin>-->
-<!--                </Button>-->
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                      <Button fx:id="Rbutton" mnemonicParsing="false" onAction="#deleteRowFromTable" text="Remove Selected Coin">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                      </Button>
+                  <Button fx:id="Rbutton1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#refresh" text="Refresh">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="symbolTextField" promptText="Symbol">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="nameTextField" promptText="Name">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                   <TextField fx:id="lowerTextField" promptText="Lower">
+                       <HBox.margin>
+                           <Insets left="20.0" right="20.0" />
+                       </HBox.margin>
+                   </TextField>
+                   <TextField fx:id="upperTextField" promptText="Upper">
+                       <HBox.margin>
+                           <Insets left="20.0" right="20.0" />
+                       </HBox.margin>
+                   </TextField>
+                  <Button fx:id="Rbutton" mnemonicParsing="false" onAction="#addToList" text="Add">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
             </children>
         </VBox>
     </center>
