@@ -50,7 +50,7 @@ public class Coin extends Thread {
     public void run() {
         while (true) {
             try {
-                sleep(100);
+                sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
