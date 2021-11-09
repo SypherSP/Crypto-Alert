@@ -33,6 +33,10 @@ public class Coin extends Thread {
     public synchronized Double getLower(){ return lower;}
     public synchronized Double getUpper(){ return upper;}
 
+    public String getSymbol() {
+        return symbol;
+    }
+
     public String getCoinName() {
         return name;
     }
