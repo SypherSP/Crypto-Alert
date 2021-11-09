@@ -63,9 +63,20 @@ public class CoinController implements Initializable {
             Coin temp = new Coin(myList.get(i).getSymbol(), myList.get(i).getCoinName(),
                     myList.get(i).getLower(), myList.get(i).getUpper());
             temp.start();
+            if(temp.getPrice()>temp.getUpper()) {
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setTitle("Upper limit breached");
+                a.setContentText(temp.getCoinName() + " price exceeded " + temp.getUpper());
+                a.show();
+            }
+            else if(temp.getPrice()<temp.getLower()) {
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setTitle("Lower limit breached");
+                a.setContentText(temp.getCoinName() + " price fell below " + temp.getLower());
+                a.show();
+            }
             myList.set(i, temp);
         }
-        table.setItems(myList);
     }
 
     @FXML
