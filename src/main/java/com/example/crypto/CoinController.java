@@ -1,23 +1,22 @@
 package com.example.crypto;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldListCell;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class CoinController implements Initializable {
     //    configure the table
@@ -100,7 +99,28 @@ public class CoinController implements Initializable {
         }
         myList.add(coinFromUser);
     }
-
+    
+     public void refreshAuto() {
+        for (int i = 0; i < myList.size(); i++) {
+            Coin temp = new Coin(myList.get(i).getSymbol(), myList.get(i).getCoinName(),
+                    myList.get(i).getLower(), myList.get(i).getUpper());
+            temp.start();
+            if(temp.getPrice()>temp.getUpper()) {
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setTitle("Upper limit breached");
+                a.setContentText(temp.getCoinName() + " price exceeded " + temp.getUpper());
+                a.show();
+            }
+            else if(temp.getPrice()<temp.getLower()) {
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setTitle("Lower limit breached");
+                a.setContentText(temp.getCoinName() + " price fell below " + temp.getLower());
+                a.show();
+            }
+            myList.set(i, temp);
+        }
+    }
+    
     private ObservableList<Coin> populateData() {
         ObservableList<Coin> myList = FXCollections.observableArrayList();
 
@@ -114,6 +134,14 @@ public class CoinController implements Initializable {
         for (Coin coin : myList) {
             coin.start(); //starting all threads
         }
+        
+//         for auto updating values 
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(4), ev -> {
+            refreshAuto();
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+        
         return myList;
     }
 }
