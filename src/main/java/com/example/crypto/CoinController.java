@@ -82,6 +82,13 @@ public class CoinController implements Initializable {
 
     @FXML
     private void addToList() {
+         if(symbolTextField.getText().trim().isEmpty() || nameTextField.getText().trim().isEmpty() || lowerTextField.getText().trim().isEmpty() || upperTextField.getText().trim().isEmpty()) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Error");
+            a.setContentText("One of the input fields in empty!");
+            a.show();
+            return;
+        }
         Coin coinFromUser = new Coin(symbolTextField.getText(), nameTextField.getText(),
                 Double.parseDouble(lowerTextField.getText()), Double.parseDouble(upperTextField.getText()));
         coinFromUser.start();
