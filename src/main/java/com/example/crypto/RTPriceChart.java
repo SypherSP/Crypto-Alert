@@ -1,7 +1,10 @@
 package com.example.crypto;
 
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.chart.*;
+import javafx.stage.Stage;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Executors;
@@ -14,18 +17,25 @@ import java.util.concurrent.TimeUnit;
 //intended to be used as  view for every coin, so that different trends can be
 //monitored at the same time
 
-public class RTPriceChart {
-    final CategoryAxis xAxis = new CategoryAxis();//time axis
-    final NumberAxis yAxis = new NumberAxis();//price of currency
-    final LineChart<String, Number> lineChart;
-    final int WINDOW_SIZE = 43200;//half a day if plotting every second
+public class RTPriceChart extends Application {
+
     private Coin coin;
     RTPriceChart(Coin coin){
         this.coin=coin;
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle(this.coin.getCoinName());
+
+        final CategoryAxis xAxis = new CategoryAxis();//time axis
+        final NumberAxis yAxis = new NumberAxis();//price of currency
+        final LineChart<String, Number> lineChart;
+        final int WINDOW_SIZE = 43200;//half a day if plotting every second
 
         xAxis.setLabel("Time/s");
         xAxis.setAnimated(true);
-        yAxis.setLabel("Value($)");
+        yAxis.setLabel("Value");
         yAxis.setAnimated(true);
 
         lineChart = new LineChart<>(xAxis, yAxis);
@@ -57,6 +67,10 @@ public class RTPriceChart {
                     series.getData().remove(0);
             });
         }, 0, 1, TimeUnit.SECONDS);
+    }
+
+    public static void main(String[] args) {
+        launch();
     }
 }
 //Need to add this method to the main method calling this class
