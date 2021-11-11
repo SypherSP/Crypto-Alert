@@ -50,9 +50,9 @@ public class Coin extends Thread {
     public void run() {
         while (true) {
             try {
-                sleep(500);
+                sleep(2000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+
             }
             setPrice(downloadPrice()); // keep downloading price and updating the coin price
 
@@ -86,7 +86,7 @@ public class Coin extends Thread {
                 return null; // checking if any exception occurred
             return priceFromResponse(res);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Too many requests");
         }
         return null; // default
     }
