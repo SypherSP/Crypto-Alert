@@ -100,7 +100,7 @@ public class CoinController implements Initializable {
         myList.add(coinFromUser);
     }
     
-     public void refreshAuto() {
+     private void refreshAuto() {
         for (int i = 0; i < myList.size(); i++) {
             Coin temp = new Coin(myList.get(i).getSymbol(), myList.get(i).getCoinName(),
                     myList.get(i).getLower(), myList.get(i).getUpper());
