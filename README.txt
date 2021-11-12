@@ -1,5 +1,7 @@
 Crypto Currency price alert application 
 
+# RUN THE CoinController.java to run the GUI
+
 Resources:
 
 https://atomsolutions.medium.com/monitoring-prices-of-cryptocurrency-with-java-and-spring-boot-ad3bdc2184e4
