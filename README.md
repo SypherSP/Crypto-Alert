@@ -1,6 +1,6 @@
-Crypto Currency price alert application 
+# RUN THE CoinController.java to run the GUI
 
-#RUN THE CoinController.java to run the GUI
+Crypto Currency price alert application 
 
 Resources:
 
